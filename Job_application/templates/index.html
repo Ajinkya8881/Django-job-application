@@ -1,0 +1,114 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0; /* Optional: Background color for the whole page */
+        }
+        .form-container {
+            width: 60%; /* Adjust width as needed */
+            max-width: 600px; /* Maximum width for larger screens */
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for a raised effect */
+        }
+        .form-container h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-container form label {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        .form-container form input[type="text"],
+        .form-container form input[type="email"] {
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .form-container form button[type="submit"] {
+            padding: 12px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        .form-container form button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        
+        /* Style for displaying messages */
+        .messages {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .messages li {
+            list-style-type: none;
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .messages .success {
+            color: #007bff; /* Blue color for success messages */
+        }
+        .messages .error {
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Job Application</h2>
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <label for="id_first_name">First Name:</label>
+            <input type="text" id="id_first_name" name="first_name">
+            
+            <label for="id_last_name">Last Name:</label>
+            <input type="text" id="id_last_name" name="last_name">
+            
+            <label for="id_email">Email:</label>
+            <input type="email" id="id_email" name="email">
+            
+            <button type="submit">Submit</button>
+        </form>
+        
+        <!-- Messages block -->
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        
+    </div>
+</body>
+</html>
